@@ -27,5 +27,4 @@ package(){
    mkdir -p ${pkgdir}/usr/share/
    cp -r ${srcdir}/.config/ ${pkgdir}/etc/skel/
    cp -r ${srcdir}/.local/ ${pkgdir}/etc/skel/
-   cp -r ${srcdir}/* ${pkgdir}/etc/skel/
 }
