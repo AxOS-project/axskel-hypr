@@ -9,11 +9,11 @@ import userOptions from './modules/.configuration/user_options.js';
 import { firstRunWelcome, startBatteryWarningService } from './services/messages.js';
 import { startAutoDarkModeService } from './services/darkmode.js';
 // Widgets
-import { Bar, BarCornerTopleft, BarCornerTopright } from './modules/bar/main.js';
+import { Bar } from './modules/bar/main.js';
 import Cheatsheet from './modules/cheatsheet/main.js';
 import DesktopBackground from './modules/desktopbackground/main.js';
 import Dock from './modules/dock/main.js';
-//import Corner from './modules/screencorners/main.js';
+import Corner from './modules/screencorners/main.js';
 import Crosshair from './modules/crosshair/main.js';
 import Indicator from './modules/indicators/main.js';
 import Osk from './modules/onscreenkeyboard/main.js';
@@ -51,10 +51,10 @@ const Windows = () => [
     forMonitors(Session),
     ...(userOptions.dock.enabled ? [forMonitors(Dock)] : []),
     ...(userOptions.appearance.fakeScreenRounding !== 0 ? [
-        //forMonitors((id) => Corner(id, 'top left', true)),
-        //forMonitors((id) => Corner(id, 'top right', true)),
-        //forMonitors((id) => Corner(id, 'bottom left', true)),
-        //forMonitors((id) => Corner(id, 'bottom right', true)),
+        forMonitors((id) => Corner(id, 'top left', true)),
+        forMonitors((id) => Corner(id, 'top right', true)),
+        forMonitors((id) => Corner(id, 'bottom left', true)),
+        forMonitors((id) => Corner(id, 'bottom right', true)),
     ] : []),
 ];
 
