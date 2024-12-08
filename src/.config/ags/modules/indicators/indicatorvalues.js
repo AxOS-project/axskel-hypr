@@ -58,13 +58,13 @@ const searchKeyboards = () => {
         const ledValue = Utils.exec(`cat /sys/class/leds/${keyboards[0]}/brightness`);
         return { keyboards, ledValue };  // Return as an object
     } else {
-        return null;
+        return "no_kb";
     }
 };
 // Debugging
 const notifyKeyboards = () => {
     const keyboards = searchKeyboards().keyboards;
-    if (keyboards.length > 0) {
+    if (keyboards !== "no_kb") {
         console.log(`Found keyboards: ${keyboards.join(', ')}`);
     } else {
         console.log('No keyboards found');
@@ -105,7 +105,7 @@ export default (monitor = 0) => {
 
 
     let keyboardLightIndicator;
-    if (searchKeyboards().keyboards.length > 0) {
+    if (searchKeyboards().keyboards !== "no_kb") {
         keyboardLightIndicator = OsdValue({
             name: 'Backlight',
             extraClassName: 'osd-brightness',
@@ -125,7 +125,6 @@ export default (monitor = 0) => {
             }, 'notify::screen-value'),        
         });
     }
-
 
     const volumeIndicator = OsdValue({
         name: 'Volume',

@@ -10,12 +10,12 @@ export default () => Box({
     className: 'txt sidebar-module techfont',
     children: [
         Label({
-            label: 'illogical-impulse'
+            label: 'made with ❤️ by Ardox',
         }),
         Box({ hexpand: true }),
         Button({
             className: 'sidebar-module-btn-arrow',
-            onClicked: () => execAsync(['xdg-open', 'https://github.com/levraiardox/dots-hyprland']).catch(print),
+            onClicked: () => execAsync(['xdg-open', 'https://github.com/levraiardox/']).catch(print),
             child: Icon({
                 className: 'txt txt-norm',
                 icon: 'github-symbolic',
