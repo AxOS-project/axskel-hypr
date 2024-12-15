@@ -50,7 +50,7 @@ const OsdValue = ({
     });
 }
 
-
+/* // Uncomment this if you want to use the keyboard backlight indicator (only works on some laptops)
 const searchKeyboards = () => {
     const out = Utils.exec('ls /sys/class/leds/');
     const keyboards = out.split('\n').filter(line => line.includes('kbd_backlight'));
@@ -87,6 +87,7 @@ const updateKbdBrightness = (keyboards) => {
     return { kbdBrightness: finalKbdBrightness };
 };
 
+*/
 
 export default (monitor = 0) => {
     const brightnessIndicator = OsdValue({
@@ -103,7 +104,7 @@ export default (monitor = 0) => {
         }, 'notify::screen-value'),
     });
 
-
+    /* // Uncomment this if you want to use the keyboard backlight indicator (only works on some laptops)
     let keyboardLightIndicator;
     if (searchKeyboards().keyboards !== "no_kb") {
         keyboardLightIndicator = OsdValue({
@@ -125,6 +126,8 @@ export default (monitor = 0) => {
             }, 'notify::screen-value'),        
         });
     }
+    */
+
 
     const volumeIndicator = OsdValue({
         name: 'Volume',
@@ -182,8 +185,9 @@ export default (monitor = 0) => {
             children: [
                 brightnessIndicator,
                 volumeIndicator,
-                keyboardLightIndicator,
+                // keyboardLightIndicator, // Uncomment this if you want to use the keyboard backlight indicator (only works on some laptops)
             ]
         })
     });
 }
+
