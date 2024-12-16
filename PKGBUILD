@@ -1,5 +1,5 @@
 pkgname="axskel-hypr"
-pkgver="2.2
+pkgver="2.2"
 pkgrel="1"
 pkgdesc="skel configs and looks for AxOS Hypr"
 arch=("x86_64")
