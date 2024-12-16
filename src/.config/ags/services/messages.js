@@ -53,7 +53,7 @@ export async function firstRunWelcome() {
                 // Note that we add a little delay to make sure the cool circular progress works
                 Utils.execAsync(['hyprctl', 'keyword', 'bind', "Super,Slash,exec,ags -t cheatsheet"]).catch(print);
                 Utils.execAsync(['bash', '-c', `sleep 0.5; notify-send '${FIRST_RUN_NOTIF_TITLE}' '${FIRST_RUN_NOTIF_BODY}' -a '${APP_NAME}' &` ]).catch(print)
-                Utils.execAsync(['bash', '-c', `sleep 0.5; sh ${GLib.get_user_config_dir()}/ags/scripts/color_generation/switchwall.sh`, '--path', '/usr/share/backgrounds/aesthetic_deer.jpg', '&']).catch(print);
+                Utils.execAsync(['bash', '-c', `sh ${GLib.get_user_config_dir()}/ags/scripts/color_generation/switchwall.sh --path /usr/share/backgrounds/aesthetic_deer.jpg`, '&']).catch(print);
             })
             .catch(print);
     }
