@@ -11,18 +11,19 @@ import { TabContainer } from '../.commonwidgets/tabcontainer.js';
 import { checkKeybind } from '../.widgetutils/keybind.js';
 
 const SIDEBARTABS = {
-    'apis': {
-        name: 'apis',
-        content: apiWidgets,
-        materialIcon: 'api',
-        friendlyName: 'APIs',
-    },
     'tools': {
         name: 'tools',
         content: toolBox,
         materialIcon: 'home_repair_service',
         friendlyName: 'Tools',
     },
+    'apis': {
+        name: 'apis',
+        content: apiWidgets,
+        materialIcon: 'api',
+        friendlyName: 'APIs',
+    },
+
 }
 const CONTENTS = userOptions.sidebar.pages.order.map((tabName) => SIDEBARTABS[tabName])
 

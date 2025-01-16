@@ -67,6 +67,7 @@ const scripts = [
 
 export default () => SidebarModule({
     icon: MaterialIcon('code', 'norm'),
+    revealChild: false,
     name: 'Quick scripts',
     child: Box({
         vertical: true,

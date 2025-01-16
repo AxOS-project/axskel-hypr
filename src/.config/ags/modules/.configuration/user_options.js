@@ -6,7 +6,7 @@ import userOverrides from "../../user_options.js";
 let configOptions = {
   // General stuff
   ai: {
-    defaultGPTProvider: "openai",
+    defaultGPTProvider: "openrouter",
     defaultTemperature: 0.9,
     enhancements: true,
     useHistory: true,
@@ -29,6 +29,7 @@ let configOptions = {
     keyboardUseFlag: false, // Use flag emoji instead of abbreviation letters
     layerSmoke: false,
     layerSmokeStrength: 0.2,
+    barPosition: "top", // Either "top" or "bottom"
   },
   apps: {
     bluetooth: "blueberry",
@@ -113,8 +114,8 @@ let configOptions = {
     // For seconds, add "%S" and set interval to 1000
     format: "%H:%M",
     interval: 5000,
-    dateFormatLong: "%A, %d/%m", // On bar
-    dateInterval: 5000,
+    dateFormatLong: "%A %d/%m", // On bar
+    dateInterval: 10000,
     dateFormat: "%d/%m", // On notif time
   },
   weather: {

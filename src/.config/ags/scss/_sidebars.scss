@@ -71,6 +71,23 @@ $sidebar_chat_textboxareaColor: mix($onSurfaceVariant, $surfaceVariant, 40%);
     color: $onPrimary;
 }
 
+.timer-button {
+    @include element_decel;
+    background-color: $primary;
+    color: $onPrimary;
+}
+.timer-button:hover,
+.timer-button:focus {
+    background-color: mix($primary, $hovercolor, 70%);
+}
+.timer-button-group {
+    margin-top: 3rem;
+    background-color: $layer1;
+}
+.timer-label {
+    font-size: 4rem;    
+}
+
 .sidebar-button-active:hover,
 .sidebar-button-active:focus {
     background-color: mix($primary, $layer1Hover, 70%);
@@ -913,4 +930,22 @@ $skeleton-accent: mix($secondary, $onSecondary, 50%);
 
 .sidebar-centermodules-scrollgradient-bottom {
     background: linear-gradient(to top, $layer1 0%, transparentize($layer1, 1) 1.023rem);
+}
+
+.txt-quote {
+    font-size: large;
+    padding: 0.341rem;
+}
+
+.config-center-save-button {
+    @include full-rounding;
+    @include element_decel;
+    min-height: 2.25rem;
+    background-color: $primary;
+    color: $onPrimary;
+    margin-top: 1rem;
+}
+.config-center-save-button:hover {
+    background-color: $primaryContainer;
+    color: $onPrimaryContainer;
 }

@@ -6,6 +6,7 @@ import { setupCursorHover } from '../.widgetutils/cursorhover.js';
 
 import { TodoWidget } from "./todolist.js";
 import { getCalendarLayout } from "./calendar_layout.js";
+//import { TimerWidget } from './timer.js';
 
 let calendarJson = getCalendarLayout(undefined, true);
 let monthshift = 0;
@@ -143,6 +144,8 @@ const contentStack = Widget.Stack({
     children: {
         'calendar': CalendarWidget(),
         'todo': TodoWidget(),
+        //'timer': TimerWidget(),
+
         // 'stars': Widget.Label({ label: 'GitHub feed will be here' }),
     },
     transition: 'slide_up_down',
@@ -193,6 +196,7 @@ export const ModuleCalendar = () => Box({
             children: [
                 StackButton('calendar', 'calendar_month', 'Calendar'),
                 StackButton('todo', 'done_outline', 'To Do'),
+                // StackButton('timer', 'timer', 'Timer'),
                 // StackButton(box, 'stars', 'star', 'GitHub'),
             ]
         }), false, false, 0);

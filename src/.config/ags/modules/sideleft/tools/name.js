@@ -8,7 +8,7 @@ export default () => Box({
     className: 'txt sidebar-module techfont',
     children: [
         Label({
-            label: 'illogical-impulse by end-4, modified by Ardox',
+            label: 'illogical-impulse'
         }),
         Box({ hexpand: true }),
         Button({

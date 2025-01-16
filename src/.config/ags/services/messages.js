@@ -52,9 +52,20 @@ export async function firstRunWelcome() {
             .then(() => {
                 // Note that we add a little delay to make sure the cool circular progress works
                 Utils.execAsync(['hyprctl', 'keyword', 'bind', "Super,Slash,exec,ags -t cheatsheet"]).catch(print);
-                Utils.execAsync(['bash', '-c', `sleep 0.5; notify-send '${FIRST_RUN_NOTIF_TITLE}' '${FIRST_RUN_NOTIF_BODY}' -a '${APP_NAME}' &` ]).catch(print)
+                Utils.execAsync(['bash', '-c', `sleep 0.5; notify-send "Millis since epoch" "$(date +%s%N | cut -b1-13)"; sleep 0.5; notify-send '${FIRST_RUN_NOTIF_TITLE}' '${FIRST_RUN_NOTIF_BODY}' -a '${APP_NAME}' &` ]).catch(print)
                 Utils.execAsync(['bash', '-c', `sh ${GLib.get_user_config_dir()}/ags/scripts/color_generation/switchwall.sh --path /usr/share/backgrounds/aesthetic_deer.jpg`, '&']).catch(print);
             })
             .catch(print);
+        // Create files
+        Utils.exec(`bash -c 'echo "top" > ${GLib.get_user_state_dir()}/ags/user/bar_position.txt'`);
+        Utils.exec(`bash -c 'echo "true" > ${GLib.get_user_state_dir()}/ags/user/show_monitor.txt'`);
+        Utils.exec(`bash -c 'echo "true" > ${GLib.get_user_state_dir()}/ags/user/show_timedate.txt'`);
+        Utils.exec(`bash -c 'echo "true" > ${GLib.get_user_state_dir()}/ags/user/show_wintitle.txt'`);
+        Utils.exec(`bash -c 'echo "true" > ${GLib.get_user_state_dir()}/ags/user/show_workspaces.txt'`);
+        Utils.exec(`bash -c 'echo "true" > ${GLib.get_user_state_dir()}/ags/user/show_systray.txt'`);
+        Utils.exec(`bash -c 'echo "true" > ${GLib.get_user_state_dir()}/ags/user/show_sysicon.txt'`);
+        Utils.exec(`bash -c 'echo "false" > ${GLib.get_user_state_dir()}/ags/user/show_weather.txt'`);
+        Utils.exec(`bash -c 'echo "false" > ${GLib.get_user_state_dir()}/ags/user/show_music.txt'`);
+        
     }
 }
