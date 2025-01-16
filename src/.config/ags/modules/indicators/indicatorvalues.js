@@ -51,43 +51,6 @@ const OsdValue = ({
 }
 
 
-const searchKeyboards = () => {
-    const out = Utils.exec('ls /sys/class/leds/');
-    const keyboards = out.split('\n').filter(line => line.includes('kbd_backlight'));
-    if (keyboards.length > 0) {
-        const ledValue = Utils.exec(`cat /sys/class/leds/${keyboards[0]}/brightness`);
-        return { keyboards, ledValue };  // Return as an object
-    } else {
-        return "no_kb";
-    }
-};
-// Debugging
-const notifyKeyboards = () => {
-    const keyboards = searchKeyboards().keyboards;
-    if (keyboards !== "no_kb") {
-        console.log(`Found keyboards: ${keyboards.join(', ')}`);
-    } else {
-        console.log('No keyboards found');
-    }
-};
-notifyKeyboards();
-const ReadKbdBrightness = (keyboards) => {
-    const path = `/sys/class/leds/${keyboards[0]}/brightness`;
-    return Utils.monitorFile(path, (file) => {
-        let kbdBrightness = Utils.readFile(file);
-        Indicator.popup(1);
-        // console.log(`Kbd Brightness: ${kbdBrightness}`);
-        return { kbdBrightness: kbdBrightness };
-    });
-};
-const updateKbdBrightness = (keyboards) => {
-    const path = `/sys/class/leds/${keyboards}/brightness`;
-    const rawKbdBrightness = Utils.readFile(path);
-    const finalKbdBrightness = `${Math.round(rawKbdBrightness * 20)}`;
-    return { kbdBrightness: finalKbdBrightness };
-};
-
-
 export default (monitor = 0) => {
     const brightnessIndicator = OsdValue({
         name: 'Brightness',
@@ -102,30 +65,6 @@ export default (monitor = 0) => {
             progress.value = updateValue;
         }, 'notify::screen-value'),
     });
-
-
-    let keyboardLightIndicator;
-    if (searchKeyboards().keyboards !== "no_kb") {
-        keyboardLightIndicator = OsdValue({
-            name: 'Backlight',
-            extraClassName: 'osd-brightness',
-            extraProgressClassName: 'osd-brightness-progress',
-            labelSetup: (self) => self.hook(ReadKbdBrightness(searchKeyboards().keyboards), self => {
-                const newBrightness = updateKbdBrightness(searchKeyboards().keyboards).kbdBrightness;
-                if (newBrightness !== self.label) { self.label = newBrightness; }
-                console.log(`Label: ${self.label}`);
-                Indicator.popup(1);
-            }, 'notify::screen-value'),
-            progressSetup: (self) => self.hook(ReadKbdBrightness(searchKeyboards().keyboards), (progress) => {
-                const updatedValue = updateKbdBrightness(searchKeyboards().keyboards).kbdBrightness / 100; // Divide by 100 to get a value between 0 and 1
-                if (updatedValue !== progress.value) {
-                    progress.value = `${updatedValue}`;
-                }
-                console.log(`Progress: ${progress.value}`);
-            }, 'notify::screen-value'),        
-        });
-    }
-
 
     const volumeIndicator = OsdValue({
         name: 'Volume',
@@ -183,7 +122,6 @@ export default (monitor = 0) => {
             children: [
                 brightnessIndicator,
                 volumeIndicator,
-                keyboardLightIndicator,
             ]
         })
     });
