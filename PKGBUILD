@@ -1,9 +1,9 @@
 pkgname="axskel-hypr"
-pkgver="2.14"
+pkgver="2.15"
 pkgrel="1"
 pkgdesc="skel configs and looks for AxOS Hypr"
 arch=("x86_64")
-depend=("sleex")
+depend=("sleex" "hyprland")
 
 
 package(){
